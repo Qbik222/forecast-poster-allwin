@@ -1,0 +1,655 @@
+$magenta: #ff267e
+$green: #05C48A
+$white: #FFFFFF
+$new-gray: #E8E8E8
+$blue: #005
+$blue-dark: #00003D
+$text-shadow-blue: 0px 0px 15px #ff3184, 0px 0px 15px #ff3184, 0px 4px 6px #ff3184
+$text-shadow-min-dark: 2px 5px 4px rgba(0, 0, 0, 0.25)
+$dark: #111218
+
+
+
+//new
+$font-suisse-semb: SuisseIntl-SemiBold, sans-serif
+$font-suisse-reg: SuisseIntl-Regular, sans-serif
+$font-suisse-med: SuisseIntl-Medium, sans-serif
+
+$font-nunito-400: NunitoSans10pt-Regular, sans-serif
+$font-nunito-600: NunitoSans10pt-SemiBoldItalic, sans-serif
+$font-nunito-700: NunitoSans10pt-BoldItalic, sans-serif
+$font-nunito-800: NunitoSans10pt-ExtraBoldItalic, sans-serif
+$font-nunito-900: NunitoSans10pt-BlackItalic, sans-serif
+
+
+.overflow
+  overflow-x: hidden !important
+
+body
+
+  img
+    max-width: 100%
+    height: auto
+
+body
+  &.light
+    background: $blue-dark
+    .fav__page
+      background: $blue-dark
+    .welcome
+      background: url("../img/welcome/welcome-bg-desc.jpg") no-repeat 50% -50px/cover
+      @media screen and (max-width: 1024px)
+        background: url("../img/welcome/welcome-bg-tab.jpg") no-repeat 50% 0/cover
+      @media screen and (max-width: 550px)
+        background: url("../img/welcome/welcome-bg-mob.jpg") no-repeat 50% 0/cover
+    .detail
+      &__bg
+        background: url("../img/detail/detail-bg-desc.png") no-repeat 0 0/contain
+        @media screen and (max-width: 550px)
+          background: url("../img/detail/detail-bg-mob.png") no-repeat 0 0/contain
+    .forecast
+      &__bg
+        background: url("../img/forecast/forecast-bg-desc.png") no-repeat 0 0/contain
+        @media screen and (max-width: 670px)
+          background: url("../img/forecast/forecast-bg-mob.png") no-repeat 0 0/contain
+    .result
+      &__bg
+        background: url("../img/result/result-bg-desc.png") no-repeat 0 0/contain
+        @media screen and (max-width: 550px)
+          background: url("../img/result/result-bg-mob.png") no-repeat 0 0/contain
+
+  &.dark
+    background: $dark
+    .fav__page
+      background: $dark
+    .welcome
+      background: url("../img/welcome/welcome-bg-desc-dark.jpg") no-repeat 50% -50px/cover
+      @media screen and (max-width: 1024px)
+        background: url("../img/welcome/welcome-bg-tab-dark.jpg") no-repeat 50% 0/cover
+      @media screen and (max-width: 550px)
+        background: url("../img/welcome/welcome-bg-mob-dark.jpg") no-repeat 50% 0/cover
+    .detail
+      &__bg
+        background: url("../img/detail/detail-bg-desc-dark.png") no-repeat 0 0/contain
+        @media screen and (max-width: 550px)
+          background: url("../img/detail/detail-bg-mob-dark.png") no-repeat 0 0/contain
+    .forecast
+      &__bg
+        background: url("../img/forecast/forecast-bg-desc-dark.png") no-repeat 0 0/contain
+        @media screen and (max-width: 670px)
+          background: url("../img/forecast/forecast-bg-mob-dark.png") no-repeat 0 0/contain
+    .result
+      &__bg
+        background: url("../img/result/result-bg-desc-dark.png") no-repeat 0 0/contain
+        @media screen and (max-width: 550px)
+          background: url("../img/result/result-bg-mob-dark.png") no-repeat 0 0/contain
+
+
+
+.fav__page
+  -webkit-tap-highlight-color: transparent
+  &.overflow
+    overflow: hidden
+
+.custom-btn
+  font-family: $font-nunito-800
+  color: $white
+  text-shadow: $text-shadow-min-dark
+  font-size: 26px
+  line-height: 26px
+  text-transform: uppercase
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 505px
+  height: 212px
+  background: url("../img/btn-bg.png") no-repeat 0 0/contain
+  position: relative
+  z-index: 2
+  @media screen and (max-width: 550px)
+    width: 415px
+    height: 174px
+    font-size: 21px
+    line-height: 21px
+  @media screen and (max-width: 360px)
+    width: 355px
+    height: 149px
+    font-size: 18px
+    line-height: 18px
+  &::after
+    content: ''
+    position: absolute
+    z-index: -1
+    width: 100%
+    height: 100%
+    background: url("../img/btn-bg-hover.png") no-repeat 0 0/contain
+    opacity: 0
+    transition: opacity .3s ease
+  &:hover:after
+    opacity: 1
+  &.hidden
+    display: none
+
+.custom-drop
+  width: 100%
+  margin: 0 auto
+  cursor: pointer
+  outline: none!important
+  position: relative
+  text-align: left
+  &[open]
+    .custom-drop-title:before
+      transform: translateY(-50%) rotate(-45deg)
+    .custom-drop-title:after
+      transform: translateY(-50%) rotate(45deg)
+  .custom-drop-title:before
+    right: 8px
+    transform: translateY(-50%) rotate(45deg)
+  .custom-drop-title:after
+    transform: translateY(-50%) rotate(-45deg)
+    right: 18px
+  &-title
+    font-family: $font-suisse-med
+    font-size: 22px
+    line-height: 22px
+    color: $white
+    text-transform: uppercase
+    letter-spacing: 1.1px
+    padding: 25px 56px 23px 0
+    position: relative
+    border-top: 1px solid $white
+    border-bottom: 1px solid $white
+    @media screen and (max-width: 550px)
+      font-size: 17px
+      line-height: 17px
+    &:before,&:after
+      content: ""
+      background: $white
+      width: 4px
+      height: 18px
+      display: block
+      position: absolute
+      top: 50%
+      z-index: 3
+      @media screen and (max-width: 550px)
+        height: 16px
+  summary::-webkit-details-marker
+    display: none
+  > summary
+    list-style: none
+  &-txt
+    cursor: default
+    background: rgba(255, 255, 255, 0.10)
+    padding: 30px
+    @media screen and (max-width: 550px)
+      padding: 20px 20px
+    &-wrap
+      height: 400px
+      overflow-y: scroll
+      font-family: $font-suisse-med
+      font-size: 14px
+      line-height: 28px
+      color: $white
+      letter-spacing: .02em
+      padding: 0 20px 0 0
+      @media screen and (max-width: 550px)
+        padding: 0 15px 0 0
+      &::-webkit-scrollbar
+        width: 4px
+        height: 80%
+        background: rgba(5, 196, 138, 0.4)
+      &::-webkit-scrollbar-thumb
+        background-color: $green
+        width: 4px
+
+      p
+        font-family: $font-suisse-med
+        font-size: 14px
+        line-height: 28px
+      span
+        display: block
+        padding-left: 15px
+      .retreat1
+        padding-left: 30px
+
+
+
+.welcome
+  padding: 0 0 150px
+  &__container
+    max-width: 1530px
+    padding: 0 15px
+    margin: 0 auto
+    position: relative
+  &__light
+    transform-origin: top center
+    position: absolute
+    width: 100%
+    height: 850px
+    top: 0
+    left: 0
+    animation: 5s lightWelcome ease infinite
+  &__belt
+    max-width: 1120px
+    margin: 0 auto
+  &__title
+    margin: -180px 0 30px 0
+    position: relative
+    z-index: 10
+    font-family: $font-nunito-600
+    color: $white
+    font-size: 54px
+    line-height: 54px
+    text-shadow: $text-shadow-blue
+    text-transform: uppercase
+    text-align: center
+    br
+      display: none
+    span
+      font-size: 74px
+      line-height: 74px
+      font-family: $font-nunito-900
+  &__btn
+    margin: -50px auto 0
+
+.detail
+  margin: -120px 0 0 0
+  &__container
+    max-width: 1270px
+    padding: 0 15px
+    margin: 0 auto
+  &__sub
+    position: relative
+    z-index: 15
+    font-family: $font-nunito-800
+    font-size: 24px
+    line-height: 33px
+    text-transform: uppercase
+    color: $white
+    text-align: center
+    max-width: 980px
+    margin: 0 auto 25px
+  &__text
+    position: relative
+    z-index: 15
+    font-size: 17px
+    line-height: 25px
+    color: $white
+    display: flex
+    flex-direction: column
+    gap: 15px
+    max-width: 980px
+    margin: 0 auto 40px
+    p
+      font-family: $font-nunito-400
+      font-style: italic
+      text-align: center
+  &__title
+    position: relative
+    z-index: 15
+    max-width: 725px
+    margin: 0 auto -45px
+  &__bg
+    position: absolute
+    width: 1930px
+    height: 630px
+    left: 54%
+    top: -190px
+    z-index: 0
+    transform: translateX(-50%)
+
+  &__list
+    position: relative
+    display: flex
+    max-width: 1040px
+    gap: 10px
+    justify-content: space-between
+    margin: 0 auto 65px
+  &__item
+    position: relative
+    z-index: 15
+    display: flex
+    flex-direction: column
+    align-items: center
+    &-img
+      animation: 4s rotateAnimation ease infinite
+    &-text
+      margin: -60px 0 0
+      max-width: 270px
+      color: $white
+      font-family: $font-nunito-700
+      font-size: 17px
+      line-height: 25px
+      letter-spacing: 0.17px
+      text-transform: uppercase
+      text-align: center
+  &__drop
+    position: relative
+    z-index: 4
+
+.forecast
+  padding: 580px 0 0 0
+  margin: -320px 0 0 0
+  position: relative
+  z-index: 1
+  height: 1315px
+  &__bg
+    position: absolute
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    width: 2150px
+    height: 1315px
+  &__container
+    position: relative
+    max-width: 1000px
+    margin: 0 auto
+    z-index: 10
+  &__wrap
+    max-width: 480px
+    width: 480px
+    margin: 0 auto 6px
+  &__list
+    display: grid
+    grid-template-columns: 235px 235px
+    gap: 5px 20px
+    margin: 0 0 5px
+  &__all
+    width: 490px
+    height: 40px
+    cursor: pointer
+    position: relative
+    z-index: 3
+    border: none
+    outline: none
+    color: $white
+    font-family: $font-nunito-900
+    line-height: 20px
+    font-size: 20px
+    text-transform: uppercase
+    background: url("../img/forecast/btn-bg-big.svg") no-repeat 0 0/contain
+    @media screen and (max-width: 670px)
+      background: url("../img/forecast/btn-bg-big-mob.svg") no-repeat 0 0/contain
+    &::after
+      content: ''
+      position: absolute
+      z-index: -1
+      width: 100%
+      height: 102%
+      top: 0
+      left: 0
+      background: url("../img/forecast/btn-big-hover.svg") no-repeat 0 0/contain
+      opacity: 0
+      transition: opacity .3s ease
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      width: 100%
+      height: 102%
+      top: 0
+      left: 0
+      background: url("../img/forecast/btn-big-active.svg") no-repeat 0 0/contain
+      opacity: 0
+      transition: opacity .3s ease
+      @media screen and (max-width: 670px)
+        background: url("../img/forecast/btn-big-active-mob.svg") no-repeat 0 0/contain
+    &:hover::after
+      opacity: 1
+      @media screen and (max-width: 670px)
+        opacity: 0 !important
+    &:hover
+      color: $white
+    &.active
+      color: $blue
+    &.active::before
+      opacity: 1
+  &__item
+    cursor: pointer
+    position: relative
+    z-index: 3
+    border: none
+    outline: none
+    width: 235px
+    height: 40px
+    color: $white
+    font-family: $font-nunito-900
+    line-height: 20px
+    font-size: 20px
+    text-transform: uppercase
+    background: url("../img/forecast/btn-bg.svg") no-repeat 0 0/contain
+    @media screen and (max-width: 670px)
+      background: url("../img/forecast/btn-bg-mob.svg") no-repeat 0 0/contain
+    &::after
+      content: ''
+      position: absolute
+      z-index: -1
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background: url("../img/forecast/btn-hover.svg") no-repeat 0 0/contain
+      opacity: 0
+      transition: opacity .3s ease
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      background: url("../img/forecast/btn-active.svg") no-repeat 0 0/contain
+      opacity: 0
+      transition: opacity .3s ease
+      @media screen and (max-width: 670px)
+        background: url("../img/forecast/btn-active-mob.svg") no-repeat 0 0/contain
+    &:hover::after
+      opacity: 1
+      @media screen and (max-width: 670px)
+        opacity: 0 !important
+    &:hover
+      color: $white
+    &.active
+      color: $blue
+    &.active::before
+      opacity: 1
+  &__des
+    max-width: 180px
+    background: rgba(0, 0, 0, 0.69)
+    border-radius: 8px
+    padding: 2px 3px 1px
+    color: $white
+    font-family: $font-nunito-600
+    font-size: 9px
+    line-height: 11px
+    text-align: center
+    text-transform: uppercase
+    margin: 0 auto 140px
+  &__link
+    margin: 0 auto -20px
+  &__question
+    display: flex
+    justify-content: center
+    margin: 0 auto
+    &-item
+      text-transform: uppercase
+      font-family: $font-nunito-700
+      font-size: 18px
+      line-height: 30px
+      padding: 3px 7px
+      color: #555
+      background: rgba(0, 0, 0, 0.50)
+      box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.10) inset
+      filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.20))
+      &-green
+        border-radius: 3px 0 0 3px
+        &.active
+          color: $white
+          background: linear-gradient(0deg, rgba(5, 196, 138, 0.85) 0%, rgba(5, 196, 138, 0.85) 100%), rgba(0, 0, 0, 0.50)
+          box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.10) inset
+          filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.20))
+      &-orange
+        border-radius: 0 3px 3px 0
+        &.active
+          color: $white
+          background: linear-gradient(0deg, rgba(255, 214, 0, 0.85) 0%, rgba(255, 214, 0, 0.85) 100%), rgba(0, 0, 0, 0.50)
+          box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.10) inset
+          filter: drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.20))
+
+.result
+  margin: -370px 0 0 0
+  padding: 540px 0 60px 0
+  position: relative
+  &__bg
+    position: absolute
+    width: 2040px
+    height: 1345px
+    left: 50%
+    top: 0
+    z-index: 0
+    transform: translateX(-49%)
+  &__container
+    max-width: 1200px
+    padding: 0 15px
+    margin: 0 auto
+    display: flex
+    flex-direction: column
+    position: relative
+    z-index: 20
+  &__link
+    margin: -60px auto 0
+  &__sub
+    max-width: 880px
+    font-family: $font-suisse-reg
+    color: rgba(255, 255, 255, 0.40)
+    text-align: center
+    font-size: 11px
+    line-height: 18px
+    margin: 0 auto 60px
+
+
+
+
+.tableResults
+  text-align: center
+  position: relative
+  z-index: 3
+  left: 9px
+  &__container
+    max-width: 640px
+    margin: 0 auto
+    padding: 0
+  &__wrap
+    margin: 0 auto 40px auto
+    text-align: left
+    position: relative
+  &__head
+    margin-right: 35px
+    margin-bottom: 15px
+    position: relative
+    &-list
+      display: flex
+    &-col
+      font-family: $font-nunito-800
+      font-size: 17px
+      line-height: 17px
+      color: $white
+      text-shadow: 0px 5px 0px #333D48, 0px 0px 15px #0331F8, 0px 0px 15px #0331F8, 0px 4px 6px #000D23
+      text-transform: uppercase
+      letter-spacing: .04em
+      text-align: center
+      padding: 0 7px
+      &:nth-child(1)
+        width: 25%
+      &:nth-child(2)
+        width: 31%
+      &:nth-child(3)
+        width: 20%
+      &:nth-child(4)
+        width: 24%
+        margin-right: 0
+  &__body
+    overflow-y: scroll
+    padding: 3px 15px 3px 3px
+    position: relative
+    max-height: 414px
+    font-size: 18px
+    background: transparent
+    &::-webkit-scrollbar
+      width: 15px
+      height: 80%
+      background: rgba(255, 255, 255, 0.3)
+      @media screen and (max-width: 670px)
+        width: 6px
+    &::-webkit-scrollbar-thumb
+      background-color: $white
+      width: 15px
+      @media screen and (max-width: 670px)
+        width: 6px
+    &-col
+      font-family: $font-nunito-800
+      font-size: 17px
+      line-height: 19px
+      width: 25%
+      display: flex
+      align-items: center
+      padding: 10.7px 17px
+      color: #00003D
+      text-align: start
+      background: $white
+      span
+        font-family: $font-nunito-800
+      &:nth-child(1)
+        width: 25%
+      &:nth-child(2)
+        width: 31%
+      &:nth-child(3)
+        text-transform: uppercase
+        width: 20%
+      &:nth-child(4)
+        width: 24%
+        margin-right: 0
+  &__row
+    word-break: break-all
+    display: flex
+    margin-bottom: 12px
+    position: relative
+    &::before
+      content: ''
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      width: calc(100% + 4px)
+      height: calc(100% + 4px)
+      border: 1px solid $white
+    &:last-child
+      margin-bottom: 0
+
+
+
+@keyframes lightWelcome
+  0%
+    opacity: .5
+    transform: scale(.8)
+  50%
+    opacity: 1
+    transform: scale(1)
+  100%
+    opacity: .5
+    transform: scale(.8)
+
+
+@keyframes rotateAnimation
+  0%
+    transform: rotate3d(0, 1, 0, -30deg)
+  50%
+    transform: rotate3d(0, 1, 0, 30deg)
+  100%
+    transform: rotate3d(0, 1, 0, -30deg)
+
+
+
+
+

@@ -1,0 +1,317 @@
+//WELCOME
+@media screen and (max-width: 1050px)
+  .welcome
+    padding: 0 0 110px
+    &__belt
+      min-width: 120%
+      position: relative
+      left: -9vw
+    &__title
+      margin: -18vw 0 30px 0
+      font-size: 43px
+      line-height: 43px
+      span
+        font-size: 60px
+        line-height: 60px
+
+@media screen and (max-width: 740px)
+  .welcome
+    &__title
+      br
+        display: block
+
+@media screen and (max-width: 550px)
+  .welcome
+    &__container
+      display: flex
+      flex-direction: column
+    &__belt
+      min-width: 140%
+      position: relative
+      left: -18vw
+    &__title
+      margin: -17vw 0 30px 0
+      font-size: 34px
+      line-height: 43px
+      span
+        font-size: 44px
+        line-height: 44px
+    &__btn
+      align-self: center
+      margin: -40px 0 0 0
+
+@media screen and (max-width: 360px)
+  .welcome
+    &__title
+      font-size: 31px
+      line-height: 38px
+      span
+        font-size: 35px
+        line-height: 36px
+    &__btn
+      margin: -44px 0 0 0
+
+
+//DETAIL
+@media screen and (max-width: 1050px)
+  .detail
+    &__title
+      max-width: 600px
+      margin: 0 auto -5vw
+    &__list
+      gap: 10px
+    &__item
+      &:not(:last-child)
+        margin: 0 -15px 0 0
+      &-text
+        max-width: 195px
+        font-size: 14px
+        line-height: 25px
+
+@media screen and (max-width: 740px)
+  .detail
+    &__container
+      display: flex
+      flex-direction: column
+    &__list
+      align-self: center
+      margin: 0 0 0 -60px
+      gap: 10px
+      flex-direction: column
+      max-width: 600px
+    &__item
+      display: flex
+      flex-direction: row
+      align-items: center
+      &-img
+        margin: 0 -40px 0 0
+        max-width: 240px
+      &:not(:last-child)
+        margin: 0 0 -110px 0
+      &-text
+        max-width: 400px
+        font-size: 17px
+        line-height: 25px
+        margin: 0
+        text-align: start
+
+@media screen and (max-width: 550px)
+  .detail
+    &__bg
+      top: -270px
+      width: 550px
+    &__sub
+      font-size: 17px
+      line-height: 21px
+      margin: 0 auto 25px
+    &__text
+      margin: 0 auto 30px
+      font-size: 15px
+      line-height: 20px
+    &__title
+      max-width: 330px
+    &__list
+      max-width: 390px
+    &__item
+      &:not(:last-child)
+        margin: 0 0 -87px 0
+      &-img
+        margin: 0 -30px 0 0
+        max-width: 190px
+        min-width: 190px
+
+@media screen and (max-width: 360px)
+  .detail
+    &__list
+      max-width: 310px
+    &__item
+      &-text
+        font-size: 14px
+        line-height: 23px
+      &:not(:last-child)
+        margin: 0 0 -77px 0
+
+
+//FORECAST
+@media screen and (max-width: 1050px)
+  .forecast
+    padding: 440px 0 0 0
+    margin: -260px 0 0 0
+    &__des
+      margin: 0 auto 90px
+    &__wrap
+      margin: 0 auto -16px
+      transform: scale(.85)
+    &__bg
+      width: 1740px
+      height: 1105px
+    &__question
+      max-width: 390px
+      margin: 0 auto
+      flex-direction: column
+      gap: 5px
+      &-item
+        text-align: center
+        font-size: 14px
+        line-height: 20px
+        &-green
+          border-radius: 3px
+        &-orange
+          border-radius: 3px
+
+@media screen and (max-width: 670px)
+  .forecast
+    padding: 410px 0 0 0
+    margin: -210px 0 0 0
+    &__des
+      margin: 50px auto 90px
+    &__wrap
+      max-width: 260px
+      transform: scale(1.2)
+    &__bg
+      width: 1730px
+      height: 1032px
+    &__list
+      grid-template-columns: 110px 110px
+      gap: 5px 30px
+    &__all
+      width: 250px
+      font-size: 14px
+      line-height: 14px
+    &__item
+      width: 110px
+      font-size: 14px
+      line-height: 14px
+
+@media screen and (max-width: 490px)
+  .forecast
+    padding: 249px 0 0 0
+    margin: -150px 0 0 0
+    &__container
+      display: flex
+      flex-direction: column
+    &__question
+      &-item
+        font-size: 12px
+        line-height: 18px
+    &__bg
+      width: 1240px
+      height: 740px
+    &__wrap
+      transform: scale(.87)
+    &__des
+      margin: 0 auto 40px
+    &__link
+      align-self: center
+      margin: 0 0 -20px
+
+@media screen and (max-width: 360px)
+  .forecast
+    padding: 186px 0 0 0
+    margin: -130px 0 0 0
+    &__wrap
+      transform: scale(.7)
+    &__bg
+      width: 1040px
+      height: 616px
+    &__des
+      transform: scale(.9)
+      margin: -25px auto 40px
+    &__question
+      max-width: 300px
+
+//RESULT
+@media screen and (max-width: 1050px)
+  .result
+    margin: -570px 0 0 0
+    padding: 490px 0 60px 0
+    &__bg
+      width: 1910px
+      height: 1253px
+  .tableResults
+    transform: scale(.95)
+    left: 3px
+
+@media screen and (max-width: 670px)
+  .result
+    margin: -430px 0 0 0
+    padding: 335px 0 60px 0
+    &__container
+      display: flex
+      flex-direction: column
+    &__bg
+      width: 1290px
+    &__link
+      align-self: center
+      margin: -90px 0 -20px
+  .tableResults
+    transform-origin: top center
+    transform: scale(.9)
+    left: 3px
+    &__head
+      &-col
+        font-size: 10px
+        line-height: 12px
+    &__body
+      max-height: 309px
+      &-col
+        font-size: 10px
+        line-height: 15px
+        padding: 8.7px 6px
+    &__container
+      max-width: 410px
+
+@media screen and (max-width: 550px)
+  .result
+    margin: -510px 0 0 0
+    padding: 370px 0 30px 0
+    &__bg
+      width: 1620px
+      transform: translateX(-50%)
+    &__sub
+      margin: 0 auto 30px
+  .tableResults
+    display: flex
+    flex-direction: column
+    &__container
+      margin: 0
+      align-self: center
+      min-width: 410px
+    &__body
+      max-height: 354px
+
+@media screen and (max-width: 490px)
+  .result
+    margin: -780px 0 0 0
+
+@media screen and (max-width: 440px)
+  .result
+    margin: -720px 0 0 0
+    padding: 310px 0 30px 0
+    &__bg
+      width: 1300px
+  .tableResults
+    &__container
+      min-width: 350px
+    &__head
+      &-col
+        font-size: 8px
+        line-height: 9px
+    &__body
+      max-height: 252px
+      &-col
+        padding: 4.7px 6px
+        font-size: 9px
+
+@media screen and (max-width: 360px)
+  .result
+    margin: -810px 0 0 0
+    padding: 285px 0 30px 0
+    &__bg
+      width: 1220px
+  .tableResults
+    transform: scale(.85)
+
+
+
+
