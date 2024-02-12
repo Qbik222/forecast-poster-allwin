@@ -3,6 +3,30 @@ let startX;
 let scrollLeft;
 
 const draggableContainer = document.getElementById('draggableContainer');
+const itemsWrap = document.querySelectorAll('.welcome__row-wrap')
+const row = document.querySelector('.welcome__row')
+const itemsWrapLength = itemsWrap.length;
+
+switch (itemsWrapLength) {
+    case 5:
+        row.style.maxWidth = '2098px';
+        break;
+    case 4:
+        row.style.maxWidth = '1668px';
+        break;
+    case 3:
+        row.style.maxWidth = '1258px';
+        break;
+    case 2:
+        row.style.maxWidth = '828px';
+        break;
+    case 1:
+        row.style.maxWidth = '418px';
+        break;
+    default:
+        row.style.maxWidth = '2098px';
+        break;
+}
 
 draggableContainer.addEventListener('mousedown', (e) => {
     isDragging = true;
