@@ -58,6 +58,11 @@ body
   -webkit-tap-highlight-color: transparent
   &.overflow
     overflow: hidden
+  &.en
+    .welcome
+      &__title
+        img
+          content: url('../img/welcome/title-en.svg')
 
 .custom-btn
   border-radius: 12px
@@ -222,6 +227,8 @@ body
     height: 35px
     background: url("../img/welcome/sub-bg.svg") no-repeat 0 0/contain
   &__subtitle
+    position: relative
+    z-index: 10
     font-family: $font-alumni-700
     color: $white
     font-size: 41px
@@ -229,6 +236,8 @@ body
     text-transform: uppercase
     margin: 0 0 10px
   &__text
+    position: relative
+    z-index: 10
     font-size: 24px
     line-height: 26px
     color: $white
@@ -238,7 +247,7 @@ body
     display: flex
     overflow-x: scroll
     gap: 23px
-    margin: 0 auto 50px
+    margin: 0 auto 25px
     position: relative
     z-index: 20
     &::-webkit-scrollbar
@@ -249,6 +258,11 @@ body
       gap: 23px
   &__btn
     margin: 0 auto
+  &__btns
+    position: relative
+    z-index: 10
+    margin: 0 auto 35px
+    width: 100px
   &__item
     display: flex
     flex-direction: column
