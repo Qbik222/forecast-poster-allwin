@@ -54,6 +54,7 @@ body
 
 
 .fav__page
+  user-select: none
   -webkit-tap-highlight-color: transparent
   &.overflow
     overflow: hidden
@@ -238,6 +239,8 @@ body
     overflow-x: scroll
     gap: 23px
     margin: 0 0 50px
+    position: relative
+    z-index: 20
     &::-webkit-scrollbar
       display: none
     &-wrap

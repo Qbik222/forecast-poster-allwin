@@ -1,31 +1,28 @@
-const body = document.querySelector('body')
-const textBtn = document.querySelector('.test-btn')
+let isDragging = false;
+let startX;
+let scrollLeft;
 
-textBtn.addEventListener('click', () => {
-    if (body.classList.contains('light')){
-        body.classList.remove('light');
-        body.classList.add('dark');
-        textBtn.innerHTML = 'light'
-        return
-    }
-    if (body.classList.contains('dark')){
-        body.classList.remove('dark');
-        body.classList.add('light');
-        textBtn.innerHTML = 'dark'
-    }
-})
+const draggableContainer = document.getElementById('draggableContainer');
 
+draggableContainer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - draggableContainer.offsetLeft;
+    scrollLeft = draggableContainer.scrollLeft;
 
+});
 
+draggableContainer.addEventListener('mouseleave', () => {
+    isDragging = false;
+});
 
+draggableContainer.addEventListener('mouseup', () => {
+    isDragging = false;
+});
 
-const resultBtns = document.querySelectorAll('.result__btn')
-resultBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-        resultBtns.forEach(function (btn) {
-            btn.classList.remove("_active");
-        });
-
-        btn.classList.add("_active");
-    });
-})
+draggableContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - draggableContainer.offsetLeft;
+    const walk = (x - startX) * 2; // Увеличьте множитель, чтобы изменить скорость прокрутки
+    draggableContainer.scrollLeft = scrollLeft - walk;
+});
