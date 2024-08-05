@@ -23,6 +23,9 @@ $font-alumni-700: AlumniSans-Bold, sans-serif
 .overflow
   overflow-x: hidden !important
 
+.hide
+  display: none !important
+
 body
 
   img
@@ -45,11 +48,11 @@ body
       background: rgba(29, 31, 41, 0.70)
     .welcome
       &__bg
-        background: url("../img/bg-desc-dark.png") no-repeat 50% 0/cover
+        background: url("https://fav-prom.com/html/forecast-poster/img/bg-desc-dark.png") no-repeat 50% 0/cover
         @media screen and (max-width: 1024px)
-          background: url("../img/bg-tab-dark.png") no-repeat 50% 0/cover
+          background: url("https://fav-prom.com/html/forecast-poster/img/bg-tab-dark.png") no-repeat 50% 0/cover
         @media screen and (max-width: 550px)
-          background: url("../img/bg-mob-dark.png") no-repeat 50% 0/cover
+          background: url("https://fav-prom.com/html/forecast-poster/img/bg-mob-dark.png") no-repeat 50% 0/cover
 
 
 
@@ -62,7 +65,11 @@ body
     .welcome
       &__title
         img
-          content: url('../img/welcome/title-en.svg')
+          content: url('https://fav-prom.com/html/forecast-poster/img/welcome/title-en.svg')
+      &__item
+        &._done
+          &:after
+            content: "Event added"
 
 .custom-btn
   border-radius: 12px
@@ -80,6 +87,7 @@ body
   position: relative
   z-index: 2
   transition: background-color .3s ease
+  cursor: pointer
   &:hover
     background: $green-hover
   &.hidden
@@ -144,7 +152,7 @@ body
     @media screen and (max-width: 550px)
       padding: 20px 20px
     &-wrap
-      height: 400px
+      height: 330px
       overflow-y: scroll
       font-family: $font-suisse-med
       font-size: 14px
@@ -191,11 +199,11 @@ body
     left: 0
     width: 100%
     height: 1675px
-    background: url("../img/bg-desc.png") no-repeat 50% 0/cover
+    background: url("https://fav-prom.com/html/forecast-poster/img/bg-desc.png") no-repeat 50% 0/cover
     @media screen and (max-width: 1024px)
-      background: url("../img/bg-tab.png") no-repeat 50% 0/cover
+      background: url("https://fav-prom.com/html/forecast-poster/img/bg-tab.png") no-repeat 50% 0/cover
     @media screen and (max-width: 550px)
-      background: url("../img/bg-mob.png") no-repeat 50% 0/cover
+      background: url("https://fav-prom.com/html/forecast-poster/img/bg-mob.png") no-repeat 50% 0/cover
   &__container
     max-width: 1180px
     padding: 0 30px
@@ -225,7 +233,7 @@ body
     justify-content: center
     width: 115px
     height: 35px
-    background: url("../img/welcome/sub-bg.svg") no-repeat 0 0/contain
+    background: url("https://fav-prom.com/html/forecast-poster/img/welcome/sub-bg.svg") no-repeat 0 0/contain
   &__subtitle
     position: relative
     z-index: 10
@@ -247,9 +255,9 @@ body
     display: flex
     overflow-x: scroll
     gap: 23px
-    margin: 0 auto 25px
+    margin: 0 auto 60px
     position: relative
-    z-index: 20
+    z-index: 10
     &::-webkit-scrollbar
       display: none
     &-wrap
@@ -279,7 +287,7 @@ body
     &:hover
       transform: translateY(-10px)
       &::before
-        background: rgba(255, 255, 255, 0.10) url("../img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
+        background: rgba(255, 255, 255, 0.10) url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
     &::before
       content: ''
       position: absolute
@@ -289,7 +297,7 @@ body
       z-index: -1
       top: 0
       left: 0
-      background: rgba(255, 255, 255, 0.10) url("../img/welcome/bg-card.png") no-repeat 50% 0/cover
+      background: rgba(255, 255, 255, 0.10) url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card.png") no-repeat 50% 0/cover
       backdrop-filter: blur(10px)
       transition: .3s ease
     &::after
@@ -317,7 +325,7 @@ body
       &::after
         content: 'Подія додана'
       &::before
-        background: url("../img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
+        background: url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
       .welcome__item-row,
       .welcome__item-max-title
         opacity: .3
@@ -383,8 +391,8 @@ body
     margin: 0 0 40px
     color: rgba(255, 255, 255, 0.6)
 
-
-
+.blockTickets
+  pointer-events: none
 
 
 
