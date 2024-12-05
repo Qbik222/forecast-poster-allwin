@@ -68,6 +68,7 @@ body
           content: url('https://fav-prom.com/html/forecast-poster/img/welcome/title-en.svg')
       &__item
         &._done
+          pointer-events: none
           &:after
             content: "Event added"
 
@@ -82,7 +83,8 @@ body
   display: flex
   align-items: center
   justify-content: center
-  width: 400px
+  max-width: 400px
+  min-width: 400px
   height: 90px
   position: relative
   z-index: 2
@@ -265,7 +267,7 @@ body
       flex-direction: column
       gap: 23px
   &__btn
-    margin: 0 auto
+    margin: auto
   &__btns
     position: relative
     z-index: 10
@@ -329,6 +331,8 @@ body
       .welcome__item-row,
       .welcome__item-max-title
         opacity: .3
+      .welcome__item-close
+        display: block
     &-row
       display: flex
       gap: 15px
@@ -376,7 +380,64 @@ body
       padding: 0 12px
       border-radius: 12px
       background: $white
-
+    &-close
+      display: none
+      position: absolute
+      top: -9px
+      right: -10px
+      width: 23px
+      height: 23px
+      cursor: pointer
+      pointer-events: initial
+      z-index: 10
+      &:before,&:after
+        content: ''
+        position: absolute
+        top: 0
+        left: 50%
+        transform: translateX(-50%)
+        width: 3px
+        height: 100%
+        background-color: $white
+      &:before
+        transform: translateX(-50%) rotate(45deg)
+      &:after
+        transform: translateX(-50%) rotate(-45deg)
+  &__bet
+    max-width: 670px
+    min-width: 670px
+    padding: 15px 30px 15px 58px
+    margin: 55px auto 0
+    display: flex
+    justify-content: center
+    align-items: center
+    background: rgba(2, 2, 2, .6)
+    backdrop-filter: blur(10px)
+    border-radius: 12px
+    border: 1px solid $white
+    &-txt
+      margin-right: 15px
+      font-family: $font-alumni-400
+      font-size: 27px
+      text-transform: uppercase
+      color: $white
+      position: relative
+      span
+        font-family: $font-alumni-400
+      p
+        display: inline-flex
+        span
+          font-family: $font-alumni-700
+          &:first-child
+            margin-right: 4px
+      &:before
+        content: ''
+        background: url("https://fav-prom.com/html/forecast-poster/img/welcome/fav.svg") no-repeat 0 0/contain
+        width: 25px
+        height: 19px
+        position: absolute
+        left: -31px
+        bottom: 8px
 .detail
   padding: 30px 0 40px
   &__container
@@ -420,4 +481,62 @@ body
 
 
 
+.switch-container
+  display: flex
+  justify-content: center
+  align-items: center
 
+.switch
+  position: relative
+  display: inline-block
+  width: 60px
+  height: 28px
+  input
+    opacity: 0
+    width: 0
+    height: 0
+  .slider
+    position: absolute
+    cursor: pointer
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: #A1A1A1
+    border-radius: 50px
+    transition: 0.4s
+    &::before
+      position: absolute
+      content: ""
+      height: 26px
+      width: 26px
+      left: 3px
+      bottom: 1px
+      background-color: $white
+      border-radius: 50%
+      transition: .4s
+  input:checked + .slider
+    background-color: $green
+    &::before
+      transform: translateX(30px)
+    .checkmark
+      opacity: 1
+  .checkmark
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    color: white
+    font-size: 14px
+    opacity: 0
+    pointer-events: none
+  &-txt
+    font-family: $font-alumni-400
+    font-size: 24px
+    color: $white
+    margin-left: 12px
+
+.blockBtn
+  pointer-events: none
+  background: #E3E3E3
+  color: rgb($blue, .2)

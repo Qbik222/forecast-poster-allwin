@@ -92,6 +92,30 @@
     &__bg
       height: 855px
       left: 0
+    &__bet
+      margin: 20px 30px 0
+      max-width: 100%
+      min-width: auto
+      padding: 11px 15px
+      justify-content: space-between
+      &-txt
+        font-size: 17px
+        line-height: 21px
+        p
+          display: block
+          span
+            font-size: 23px
+            &:first-child
+              margin-right: 0
+        &:before
+          content: none
+  .custom-btn
+    font-size: 14px
+    line-height: 14px
+    max-width: 182px
+    min-width: 182px
+    height: 50px
+    border-radius: 7px
 
 @media screen and (max-width: 500px)
   .welcome
@@ -124,6 +148,8 @@
     &__text
       max-width: 310px
       margin: 0 0 20px
+    &__bet
+      margin: 20px 20px 0
   .detail
     padding: 30px 0
     &__container 
@@ -132,4 +158,15 @@
       margin: 0 0 30px
   .authBtn
     margin-top: 20px
+
+@media screen and (max-width: 370px)
+  .welcome
+    &__bet
+      padding: 11px 8px
+      &-txt
+        font-size: 16px
+        p
+          span
+            font-size: 18px
+
 

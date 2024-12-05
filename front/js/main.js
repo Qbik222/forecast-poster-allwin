@@ -3,7 +3,10 @@
 
     const
         unauthMsgs = document.querySelectorAll('.authBtn'),
-        participateBtns = document.querySelectorAll('.predictBtn');
+        participateBtns = document.querySelectorAll('.predictBtn'),
+        counterSpan = document.querySelector('.counter'),
+        eventsSpan = document.querySelector('.events'),
+        welcomeBet = document.querySelector('.welcome__bet');
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
@@ -46,6 +49,9 @@
                 elem.removeAttribute('data-translate');
             })
         }
+        if (locale === 'en') {
+            mainPage.classList.add('en');
+        }
     }
 
     function translateKey(key, defaultValue) {
@@ -73,11 +79,12 @@
                 return;
             }
 
-            const betslipMatches = JSON.parse(localStorage.getItem('betslipMatches')) || [];
-            for (const match of allMatches) {
-                const matchDiv = elementsByMatchiD[match.matchId];
-                addMatchToBetslip(match, matchDiv, betslipMatches);
-            }
+            getBetslipItems().then(betslipMatches => {
+                for (const match of allMatches) {
+                    const matchDiv = elementsByMatchiD[match.matchId];
+                    addMatchToBetslip(match, matchDiv, betslipMatches);
+                }
+            }).catch(err => console.error('Error getting betslip items:', err));
         });
     }
 
@@ -85,45 +92,12 @@
         translate();
         initAddAllBtn();
         request('/matches').then(matches => {
-            allMatches = matches || [];
+            allMatches = (matches || []).sort((a, b) => new Date(a.activeDate) - new Date(b.activeDate));
 
-            // const testData = [
-            //     {
-            //         matchId: '1',
-            //         activeDate: new Date(),
-            //         doneDate: new Date(),
-            //         matchDate: new Date('2024-06-01'),
-            //         link: '',
-            //         title: 'ЄВРОПА | ЛІГА ЧЕМПІОНІВ. ЖІНКИ',
-            //         status: '',
-            //         outcome: 'Перемога Баварія Мюнхен',
-            //         team1: 'Рома',
-            //         team2: 'Баварія Мюнхен',
-            //         serviceId: 1,
-            //         eventId: 1,
-            //         marketId: 3.60,
-            //         outcomeId: 1
-            //     },
-            //     {
-            //         matchId: '2',
-            //         activeDate: new Date(),
-            //         doneDate: new Date(),
-            //         matchDate: new Date('2024-06-02'),
-            //         link: '',
-            //         title: 'АФРИКА | КУБОК АФРИКАНСЬКИХ НАЦІЙ 2023. КОТ-Д',
-            //         status: '',
-            //         outcome: 'Перемога Баварія Мюнхен',
-            //         team1: 'Gen.G Global Academy',
-            //         team2: 'Kwangdong Freecs Challengers',
-            //         serviceId: 1,
-            //         eventId: 1,
-            //         marketId: 3.60,
-            //         outcomeId: 1
-            //     }
-            // ];
-            const betslipMatches = JSON.parse(localStorage.getItem('betslipMatches')) || [];
-            initMatches(allMatches, betslipMatches);
-            initSlider();
+            getBetslipItems().then(betslipMatches => {
+                initMatches(allMatches, betslipMatches);
+                initSlider();
+            }).catch(err => console.error('Error getting betslip items:', err));
         });
     }
 
@@ -131,6 +105,7 @@
         const container = document.querySelector('.welcome__row');
         container.innerHTML = '';
 
+        let added = 0;
         for (let i = 0; i < matches.length; i += 2) {
             const rowWrap = document.createElement('div');
             rowWrap.className = 'welcome__row-wrap';
@@ -140,24 +115,26 @@
                 const matchDiv = document.createElement('div');
                 matchDiv.className = 'welcome__item';
                 match.matchId = (+match.matchId);
-                if (betslipMatches.includes(match.matchId)) {
+                if (betslipMatches.some(b => b.event_id == match.matchId)) {
+                    added++;
                     matchDiv.classList.add('_done');
                 }
 
                 matchDiv.innerHTML = `
-                    <div class="welcome__item-row">
-                        <div class="welcome__item-title">
-                            <img src="https://fav-prom.com/html/forecast-poster/img/welcome/fav.svg" alt="FAVBET">
-                            <span>${translateKey(match.title)}</span>
-                        </div>
-                        <div class="welcome__item-date">${formatDate(match.matchDate)}</div>
+                <div class="welcome__item-close"></div>
+                <div class="welcome__item-row">
+                    <div class="welcome__item-title">
+                        <img src="https://fav-prom.com/html/forecast-poster/img/welcome/fav.svg" alt="FAVBET">
+                        <span>${translateKey(match.title)}</span>
                     </div>
-                    <div class="welcome__item-max-title">${translateKey(match.team1)} – ${translateKey(match.team2)}</div>
-                    <div class="welcome__item-info">
-                        <div class="welcome__item-bid">${translateKey(match.outcomeTranslation)}</div>
-                        <div class="welcome__item-cof">${match.defaultCoef || 0}</div>
-                    </div>
-                `;
+                    <div class="welcome__item-date">${formatDate(match.matchDate)}</div>
+                </div>
+                <div class="welcome__item-max-title">${translateKey(match.team1)} – ${translateKey(match.team2)}</div>
+                <div class="welcome__item-info">
+                    <div class="welcome__item-bid">${translateKey(match.outcomeTranslation)}</div>
+                    <div class="welcome__item-cof">${match.defaultCoef || 0}</div>
+                </div>
+            `;
 
                 elementsByMatchiD[match.matchId] = matchDiv;
                 rowWrap.appendChild(matchDiv);
@@ -169,19 +146,27 @@
                     } else {
                         console.log(`No outcome data for ${match.matchId}`);
                     }
-                })
+                });
 
-                // click listener
-                matchDiv.addEventListener('click', () => addMatchToBetslip(match, matchDiv, betslipMatches));
+                matchDiv.addEventListener('click', (e) => addMatchToBetslip(match, matchDiv, betslipMatches, e));
+                const closeBtn = matchDiv.querySelector('.welcome__item-close');
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    removeMatchFromBetslip(match, matchDiv);
+                });
             }
             container.appendChild(rowWrap);
         }
 
+        setCounter(added);
         return container;
     }
 
-    function addMatchToBetslip(match, matchDiv, betslipMatches) {
-        if (!userId || betslipMatches.includes(match.matchId)) {
+    function addMatchToBetslip(match, matchDiv, betslipMatches, e) {
+        if (e) {
+            console.log('Target class list: ' + e.target.classList);
+        }
+        if (!userId || betslipMatches.some(b => b.event_id == match.matchId || (e && e.target.classList.contains('welcome__item-close')))) {
             return;
         }
 
@@ -190,10 +175,72 @@
             console.log('No fav data for match id ' + match.matchId);
             return;
         }
-        addToBetslip(favData);
-        matchDiv.classList.add('_done');
-        betslipMatches.push(match.matchId);
-        localStorage.setItem('betslipMatches', JSON.stringify(betslipMatches));
+
+        request('/events', {
+            method: 'POST',
+            body: JSON.stringify({
+                userid: userId,
+                eventId: match.matchId
+            })
+        }).then(response => {
+            if (response.success) {
+                console.log('Event created:', response.event);
+                addToBetslip(favData);
+                matchDiv.classList.add('_done');
+                updateCounter(1);
+            } else {
+                console.error('Failed to create event:', response.error);
+            }
+        }).catch(error => {
+            console.error('Error creating event:', error);
+        });
+    }
+
+
+    function removeMatchFromBetslip(match, matchDiv) {
+        if (!userId) {
+            return;
+        }
+
+        const favData = favDataByMatch[match.matchId];
+        if (!favData || !favData.matchId) {
+            console.log('No fav data for match id ' + match.matchId);
+            return;
+        }
+
+        const isRemoved = removeFromBetslip(favData); // Directly assign result
+        if (isRemoved) {
+            matchDiv.classList.remove('_done');
+            updateCounter(-1);
+        }
+    }
+
+    function updateCounter(diff) {
+        const currCounter = +counterSpan.innerHTML;
+        setCounter(currCounter + diff);
+    }
+
+    function setCounter(value) {
+        counterSpan.innerHTML = value;
+
+        const lastDigit = value % 10;
+        let translationKey;
+        if (lastDigit === 1) {
+            translationKey = 'event1';
+        } else if (lastDigit >= 2 && lastDigit <= 4) {
+            translationKey = 'event2';
+        } else {
+            translationKey = 'event3';
+        }
+
+        const eventTranslation = translateKey(translationKey);
+        eventsSpan.innerHTML = eventTranslation;
+
+        if (value > 0) {
+            welcomeBet.classList.remove('hide');
+        } else {
+            welcomeBet.classList.add('hide');
+        }
     }
 
     function getMatchData(match, serviceId=0) {
@@ -267,6 +314,45 @@
             'outcomeId': match.outcomeId
         };
         window.addBetslipOutcomes([outcome]);
+    }
+
+    function removeFromBetslip(match) {
+        if (!window.removeBetslipItems) {
+            console.log('Метод removeBetslipItems не знайдено');
+            return false; // Значення за замовчуванням
+        }
+
+        const outcomeId = match.outcomeId; // Отримуємо тільки id
+
+        // Викликаємо новий метод з масивом айді
+        const result = window.removeBetslipItems([outcomeId]);
+
+        if (result && result instanceof Promise) {
+            result
+                .then(() => console.log(`Успішно видалено outcomeId ${outcomeId}`))
+                .catch(err => console.error(`Помилка при видаленні outcomeId ${outcomeId}:`, err));
+        } else {
+            console.log(`Метод повернув ${result} для outcomeId ${outcomeId}`);
+        }
+
+        return result;
+    }
+
+    function getBetslipItems() {
+        if (!window.getBetslipItems) {
+            console.log('No getBetslipItems method is defined');
+            return Promise.resolve([]);
+        }
+
+        return window.getBetslipItems()
+            .then(result => {
+                console.log('Betslip items:', result);
+                return result;
+            })
+            .catch(error => {
+                console.error('Error in getBetslipItems:', error);
+                return [];
+            });
     }
 
     function init() {
@@ -372,5 +458,4 @@
             draggableContainer.scrollLeft = scrollLeft - walk;
         });
     }
-
 })();
