@@ -249,7 +249,7 @@
             return;
         }
 
-        return fetch('/frontend_api2/', {
+        return fetch('/service/lineout/frontend_api2/', {
             method: 'POST',
             body: JSON.stringify({
                 "jsonrpc": "2.0",

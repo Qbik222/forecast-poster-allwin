@@ -68,7 +68,6 @@ body
           content: url('https://fav-prom.com/html/forecast-poster/img/welcome/title-en.svg')
       &__item
         &._done
-          pointer-events: none
           &:after
             content: "Event added"
 
@@ -253,7 +252,7 @@ body
     color: $white
     font-family: $font-alumni-400
   &__row
-    padding: 20px 15px 0
+    padding: 20px 7px 0
     display: flex
     overflow-x: scroll
     gap: 23px
@@ -322,6 +321,7 @@ body
       border-radius: 50px
     &._done
       border: 1px solid $green
+      pointer-events: none
       &:hover
         transform: translateY(0)
       &::after
