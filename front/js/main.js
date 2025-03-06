@@ -21,7 +21,7 @@
     let elementsByMatchiD = {};
     let allMatches = [];
     let favDataByMatch = {};
-    // userId = 7777777;
+    // userId = 103031597;
 
     function loadTranslations() {
         return fetch(`${apiURL}/translates/${locale}`).then(res => res.json())
@@ -92,6 +92,7 @@
         translate();
         initAddAllBtn();
         request('/matches').then(matches => {
+            console.log(matches);
             allMatches = (matches || []).sort((a, b) => new Date(a.activeDate) - new Date(b.activeDate));
 
             getBetslipItems().then(betslipMatches => {
@@ -166,11 +167,17 @@
         if (e) {
             console.log('Target class list: ' + e.target.classList);
         }
+        console.log(match);
+        console.log(matchDiv);
+        console.log(betslipMatches);
         if (!userId || betslipMatches.some(b => b.event_id == match.matchId || (e && e.target.classList.contains('welcome__item-close')))) {
             return;
         }
 
+        console.log(favDataByMatch);
+
         const favData = favDataByMatch[match.matchId];
+        console.log('FAV DATA BY MATCH', favDataByMatch)
         if (!favData || !favData.matchId) {
             console.log('No fav data for match id ' + match.matchId);
             return;
@@ -284,6 +291,7 @@
                 }
             })
             .then(m => {
+                console.log(m)
                 favDataByMatch[m.matchId] = m;
                 return m;
             })
