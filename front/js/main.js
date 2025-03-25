@@ -11,7 +11,7 @@
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
 
-    let locale = 'uk';
+    let locale = sessionStorage.getItem("locale") ?? 'uk';
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -21,10 +21,10 @@
     let elementsByMatchiD = {};
     let allMatches = [];
     let favDataByMatch = {};
-    // userId = 103031597;
+    userId = 103031597;
 
     function loadTranslations() {
-        return fetch(`${apiURL}/translates/${locale}`).then(res => res.json())
+        return fetch(`${apiURL}/new-translates/${locale}`).then(res => res.json())
             .then(json => {
                 i18nData = json;
                 translate();
@@ -140,14 +140,14 @@
                 elementsByMatchiD[match.matchId] = matchDiv;
                 rowWrap.appendChild(matchDiv);
 
-                getMatchData(match).then(m => {
-                    if (m) {
-                        const cofDiv = matchDiv.querySelector('.welcome__item-cof');
-                        cofDiv.innerHTML = m.outcomeCoef;
-                    } else {
-                        console.log(`No outcome data for ${match.matchId}`);
-                    }
-                });
+                // getMatchData(match).then(m => {
+                //     if (m) {
+                //         const cofDiv = matchDiv.querySelector('.welcome__item-cof');
+                //         cofDiv.innerHTML = m.outcomeCoef;
+                //     } else {
+                //         console.log(`No outcome data for ${match.matchId}`);
+                //     }
+                // });
 
                 matchDiv.addEventListener('click', (e) => addMatchToBetslip(match, matchDiv, betslipMatches, e));
                 const closeBtn = matchDiv.querySelector('.welcome__item-close');
@@ -466,4 +466,24 @@
             draggableContainer.scrollLeft = scrollLeft - walk;
         });
     }
+
+    // test
+    const switchBtn = document.querySelector(".welcome__switch-btn")
+
+    switchBtn.addEventListener("click", function(){
+        switchBtn.classList.toggle("active")
+    })
+
+    document.querySelector(".dark-btn").addEventListener("click", () =>{
+        document.body.classList.toggle("dark")
+    })
+
+    document.querySelector(".lng-btn").addEventListener("click", () => {
+        locale = locale === 'uk' ? 'en' : 'uk';
+        sessionStorage.setItem("locale", locale);
+        window.location.reload()
+    });
+
+
+
 })();
