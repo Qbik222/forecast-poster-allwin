@@ -6,7 +6,8 @@
         participateBtns = document.querySelectorAll('.predictBtn'),
         counterSpan = document.querySelector('.counter'),
         eventsSpan = document.querySelector('.events'),
-        welcomeBet = document.querySelector('.welcome__bet');
+        welcomeBet = document.querySelector('.welcome__bet'),
+        switchWrap = document.querySelector(".welcome__switch");
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
@@ -21,7 +22,7 @@
     let elementsByMatchiD = {};
     let allMatches = [];
     let favDataByMatch = {};
-    userId = 103031597;
+    userId = Number(sessionStorage.getItem("userId")) ?? 103031597 ;
 
     function loadTranslations() {
         return fetch(`${apiURL}/new-translates/${locale}`).then(res => res.json())
@@ -392,11 +393,13 @@
             for (const unauthMes of unauthMsgs) {
                 unauthMes.classList.add('hide');
             }
+            switchWrap.classList.remove("hide")
             const addAllBtn = document.querySelector('.predictBtn');
             addAllBtn.classList.remove('hide');
             const container = document.querySelector('.welcome__row');
             container.classList.remove('hide');
         } else {
+            switchWrap.classList.add("hide")
             for (let participateBtn of participateBtns) {
                 participateBtn.classList.add('hide');
             }
@@ -483,6 +486,20 @@
         sessionStorage.setItem("locale", locale);
         window.location.reload()
     });
+
+    document.querySelector(".auth-btn").addEventListener("click", () => {
+        userId = userId === 103031597 ? 0 : 103031597;
+        sessionStorage.setItem("userId", userId);
+        window.location.reload()
+
+    });
+
+
+
+
+
+
+
 
 
 
