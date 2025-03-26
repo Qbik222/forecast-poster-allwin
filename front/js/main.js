@@ -494,6 +494,11 @@
 
     });
 
+    document.querySelector(".bet-btn").addEventListener("click", () => {
+        document.querySelector(".welcome__bet").classList.toggle("hide")
+    });
+
+
 
 
 
