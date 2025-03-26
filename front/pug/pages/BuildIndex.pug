@@ -1,8 +1,8 @@
 .menu-test
-    button.dark-btn dark
-    button.lng-btn en
+    //button.dark-btn dark
+    //button.lng-btn en
     button.auth-btn auth
-    button.bet-btn bet
+    //button.bet-btn bet
 .fav__page#forecastPoster
     .welcome
         .welcome__bg
@@ -13,7 +13,7 @@
                     .welcome__sub(data-translate="ps")
                 .welcome__subtitle(data-translate="welcomeSub")
                 .welcome__text(data-translate="welcomeTxt")
-        .welcome__row.hide(id="draggableContainer")
+        .welcome__row(id="draggableContainer")
         .welcome__btns.hide
             img(src='./img/welcome/btns.svg' alt='buttons')
         a(href="/login/" role="button" data-translate="loginBtn").welcome__btn.custom-btn.authBtn

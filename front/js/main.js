@@ -12,7 +12,8 @@
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
 
-    let locale = sessionStorage.getItem("locale") ?? 'uk';
+    // let locale = sessionStorage.getItem("locale") ?? 'uk';
+    let locale =  'uk';
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -23,6 +24,7 @@
     let allMatches = [];
     let favDataByMatch = {};
     userId = Number(sessionStorage.getItem("userId")) ?? 103031597 ;
+    // userId = 103031597 ;
 
     function loadTranslations() {
         return fetch(`${apiURL}/new-translates/${locale}`).then(res => res.json())
@@ -159,7 +161,6 @@
             }
             container.appendChild(rowWrap);
         }
-
         setCounter(added);
         return container;
     }
@@ -366,7 +367,6 @@
 
     function init() {
         InitPage();
-
         if (window.store) {
             var state = window.store.getState();
             userId = state.auth.isAuthorized && state.auth.id || '';
@@ -397,7 +397,7 @@
             const addAllBtn = document.querySelector('.predictBtn');
             addAllBtn.classList.remove('hide');
             const container = document.querySelector('.welcome__row');
-            container.classList.remove('hide');
+            // container.classList.remove('hide');
         } else {
             switchWrap.classList.add("hide")
             for (let participateBtn of participateBtns) {
@@ -470,6 +470,13 @@
         });
     }
 
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('.welcome__item');
+        if (target && !userId) {
+            window.location.href = '/login';
+        }
+    });
+
     // test
     const switchBtn = document.querySelector(".welcome__switch-btn")
 
@@ -477,15 +484,15 @@
         switchBtn.classList.toggle("active")
     })
 
-    document.querySelector(".dark-btn").addEventListener("click", () =>{
-        document.body.classList.toggle("dark")
-    })
-
-    document.querySelector(".lng-btn").addEventListener("click", () => {
-        locale = locale === 'uk' ? 'en' : 'uk';
-        sessionStorage.setItem("locale", locale);
-        window.location.reload()
-    });
+    // document.querySelector(".dark-btn").addEventListener("click", () =>{
+    //     document.body.classList.toggle("dark")
+    // })
+    //
+    // document.querySelector(".lng-btn").addEventListener("click", () => {
+    //     locale = locale === 'uk' ? 'en' : 'uk';
+    //     sessionStorage.setItem("locale", locale);
+    //     window.location.reload()
+    // });
 
     document.querySelector(".auth-btn").addEventListener("click", () => {
         userId = userId === 103031597 ? 0 : 103031597;
@@ -494,9 +501,9 @@
 
     });
 
-    document.querySelector(".bet-btn").addEventListener("click", () => {
-        document.querySelector(".welcome__bet").classList.toggle("hide")
-    });
+    // document.querySelector(".bet-btn").addEventListener("click", () => {
+    //     document.querySelector(".welcome__bet").classList.toggle("hide")
+    // });
 
 
 
