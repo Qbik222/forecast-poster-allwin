@@ -19,13 +19,6 @@ $font-suisse-med: SuisseIntl-Medium, sans-serif
 $font-alumni-400: AlumniSans-Regular, sans-serif
 $font-alumni-700: AlumniSans-Bold, sans-serif
 
-
-.menu-test
-  display: flex
-  flex-direction: column
-  position: fixed
-  z-index: 20
-
 .overflow
   overflow-x: hidden !important
 
@@ -33,7 +26,6 @@ $font-alumni-700: AlumniSans-Bold, sans-serif
   display: none !important
 
 body
-
   img
     max-width: 100%
     height: auto
@@ -54,11 +46,11 @@ body
       background: rgba(29, 31, 41, 0.70)
     .welcome
       &__bg
-        background: url("../img/bg-desc-dark.png") no-repeat 50% 0/cover
+        background: url("https://fav-prom.com/html/forecast-poster/img/bg-desc-dark.png") no-repeat 50% 0/cover
         @media screen and (max-width: 1050px)
-          background: url("../img/bg-tab-dark.png") no-repeat 50% 0/cover
+          background: url("https://fav-prom.com/html/forecast-poster/img/bg-tab-dark.png") no-repeat 50% 0/cover
         @media screen and (max-width: 600px)
-          background: url("../img/bg-mob-dark.png") no-repeat 50% 0/cover
+          background: url("https://fav-prom.com/html/forecast-poster/img/bg-mob-dark.png") no-repeat 50% 0/cover
 
 
 
@@ -71,7 +63,7 @@ body
     .welcome
       &__title
         img
-          content: url('../img/welcome/title-en.svg')
+          content: url('https://fav-prom.com/html/forecast-poster/img/welcome/title-en.svg')
       &__item
         &._done
           &:after
@@ -167,6 +159,7 @@ body
       color: $white
       letter-spacing: .02em
       padding: 0 20px 0 0
+      scrollbar-width: auto
       @media screen and (max-width: 600px)
         padding: 0 15px 0 0
       &::-webkit-scrollbar
@@ -207,11 +200,11 @@ body
     width: 100%
     height: 1675px
     pointer-events: none
-    background: url("../img/bg-desc.png") no-repeat 50% 0/cover
+    background: url("https://fav-prom.com/html/forecast-poster/img/bg-desc.png") no-repeat 50% 0/cover
     @media screen and (max-width: 1050px)
-      background: url("../img/bg-tab.png") no-repeat 50% 0/cover
+      background: url("https://fav-prom.com/html/forecast-poster/img/bg-tab.png") no-repeat 50% 0/cover
     @media screen and (max-width: 600px)
-      background: url("../img/bg-mob.png") no-repeat 50% 0/cover
+      background: url("https://fav-prom.com/html/forecast-poster/img/bg-mob.png") no-repeat 50% 0/cover
   &__container
     max-width: 1180px
     padding: 0 30px
@@ -241,7 +234,7 @@ body
     justify-content: center
     width: 115px
     height: 35px
-    background: url("../img/welcome/sub-bg.svg") no-repeat 0 0/contain
+    background: url("https://fav-prom.com/html/forecast-poster/img/welcome/sub-bg.svg") no-repeat 0 0/contain
   &__subtitle
     position: relative
     z-index: 10
@@ -298,7 +291,7 @@ body
     &:hover
       transform: translateY(-10px)
       &::before
-        background: rgba(255, 255, 255, 0.10) url("../img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
+        background: rgba(255, 255, 255, 0.10) url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
     &::before
       content: ''
       position: absolute
@@ -308,7 +301,7 @@ body
       z-index: -1
       top: 0
       left: 0
-      background: rgba(255, 255, 255, 0.10) url("../img/welcome/bg-card.png") no-repeat 50% 0/cover
+      background: rgba(255, 255, 255, 0.10) url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card.png") no-repeat 50% 0/cover
       backdrop-filter: blur(10px)
       transition: .3s ease
     &::after
@@ -337,7 +330,7 @@ body
       &::after
         content: 'Подія додана'
       &::before
-        background: url("../img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
+        background: url("https://fav-prom.com/html/forecast-poster/img/welcome/bg-card-hover.png") no-repeat 50% 0/cover
       .welcome__item-row,
       .welcome__item-max-title
         opacity: .3
@@ -379,7 +372,7 @@ body
       font-size: 17px
       color: $white
       line-height: 19px
-      padding: 3px 12px
+      padding: 3px 11px
       border-radius: 12px
       background: $magenta
     &-cof
@@ -442,7 +435,7 @@ body
             margin-right: 4px
       &:before
         content: ''
-        background: url("../img/welcome/fav.svg") no-repeat 0 0/contain
+        background: url("https://fav-prom.com/html/forecast-poster/img/welcome/fav.svg") no-repeat 0 0/contain
         width: 25px
         height: 19px
         position: absolute
@@ -458,11 +451,11 @@ body
     &-btn
       width: 60px
       height: 30px
-      background: url("../img/switch-off.png") no-repeat 0 0/contain
+      background: url("https://fav-prom.com/html/forecast-poster/img/switch-off.png") no-repeat 0 0/contain
       margin-right: 10px
-      transition: background .7s linear
+      transition: background .2s linear
       &.active
-        background: url("../img/switch-on.png") no-repeat 0 0/contain
+        background: url("https://fav-prom.com/html/forecast-poster/img/switch-on.png") no-repeat 0 0/contain
       &:hover
         cursor: pointer
     &-text
