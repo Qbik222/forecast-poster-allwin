@@ -88,13 +88,53 @@
         return i18nData[key] || defaultValue;
     }
 
-    const request = (link, extraOptions) => fetch(apiURL + link, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        ...(extraOptions || {})
-    }).then(res => res.json());
+    const request = (link, extraOptions) =>
+        fetch(apiURL + link, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            ...(extraOptions || {})
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('API error');
+                return res.json();
+            })
+            .catch(err => {
+                console.error('API request failed:', err);
+
+                reportError(err);
+
+                window.location.href = '/promos/promo/stub/';
+                return Promise.reject(err);
+            });
+
+    function reportError(err) {
+        const reportData = {
+            origin: window.location.href,
+            userid: userId || undefined,
+            errorText: err?.error || err?.text || err?.message || 'Unknown error',
+            type: err?.name || 'UnknownError',
+            stack: err?.stack || ''
+        };
+
+        fetch('https://fav-prom.com/api-cms/reports/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reportData)
+        }).catch(console.warn);
+    }
+
+    window.addEventListener('error', function (e) {
+        reportError(e.error || e);
+        return false;
+    });
+
+    window.addEventListener('unhandledrejection', function (e) {
+        reportError(e.reason || e);
+    });
 
     function initAddAllBtn() {
         const addAllBtn = document.querySelector('.predictBtn');
