@@ -105,7 +105,9 @@
 
                 reportError(err);
 
+                document.querySelector('.fav__page').style.display = 'none';
                 window.location.href = '/promos/promo/stub/';
+
                 return Promise.reject(err);
             });
 
