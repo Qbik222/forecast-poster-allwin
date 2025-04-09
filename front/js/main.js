@@ -112,7 +112,7 @@
     function reportError(err) {
         const reportData = {
             origin: window.location.href,
-            userid: userId || undefined,
+            userid: userId,
             errorText: err?.error || err?.text || err?.message || 'Unknown error',
             type: err?.name || 'UnknownError',
             stack: err?.stack || ''
