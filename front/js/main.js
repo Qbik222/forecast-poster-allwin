@@ -18,7 +18,7 @@
 
     let i18nData = {};
     let userId;
-    // userId = 7777777;
+    // userId = 100300268;
     let elementsByMatchiD = {};
     let allMatches = [];
     let favDataByMatch = {};
@@ -41,11 +41,9 @@
 
         getBetslipItems().then(betslipMatches => {
             if (isActive) {
-                allMatches.forEach((match, index) => {
+                allMatches.forEach((match) => {
                     const matchDiv = elementsByMatchiD[match.matchId];
-                    setTimeout(() => {
-                        addMatchToBetslip(match, matchDiv, betslipMatches);
-                    }, index * 50);
+                    addMatchToBetslip(match, matchDiv, betslipMatches);
                 });
             } else {
                 for (const match of allMatches) {
@@ -227,32 +225,36 @@
         return container;
     }
 
+    let hasSentClickEvent = false;
+
     function addMatchToBetslip(match, matchDiv, betslipMatches, e) {
-        if (!userId || betslipMatches.some(b => b.event_id == match.matchId || (e && e.target.classList.contains('welcome__item-close')))) {
+        if (!userId || betslipMatches.some(b => b.event_id === match.matchId || (e && e.target.classList.contains('welcome__item-close')))) {
             return;
         }
 
         const favData = favDataByMatch[match.matchId];
         if (!favData || !favData.matchId) return;
 
-        request('/events', {
-            method: 'POST',
-            body: JSON.stringify({ userid: userId, eventId: match.matchId })
-        }).then(response => {
-            if (response.success) {
-                addToBetslip(favData);
-                matchDiv.classList.add('_done');
-                updateCounter(1);
+        if (!hasSentClickEvent) {
+            hasSentClickEvent = true;
 
-                const activeCount = document.querySelectorAll('.welcome__item._done').length;
-                const totalCount = document.querySelectorAll('.welcome__item').length;
+            request('/events', {
+                method: 'POST',
+                body: JSON.stringify({ userid: userId, eventId: match.matchId })
+            }).catch(console.error);
+        }
 
-                if (activeCount === totalCount && !switchBtn.classList.contains("active")) {
-                    switchBtn.classList.add("active");
-                    localStorage.setItem("switcherActive", "1");
-                }
-            }
-        }).catch(console.error);
+        addToBetslip(favData);
+        matchDiv.classList.add('_done');
+        updateCounter(1);
+
+        const activeCount = document.querySelectorAll('.welcome__item._done').length;
+        const totalCount = document.querySelectorAll('.welcome__item').length;
+
+        if (activeCount === totalCount && !switchBtn.classList.contains("active")) {
+            switchBtn.classList.add("active");
+            localStorage.setItem("switcherActive", "1");
+        }
     }
 
     function removeMatchFromBetslip(match, matchDiv) {
@@ -266,7 +268,6 @@
             matchDiv.classList.remove('_done');
             updateCounter(-1);
 
-            // Скидаємо світчер, якщо був активний
             if (switchBtn.classList.contains("active")) {
                 switchBtn.classList.remove("active");
                 localStorage.setItem("switcherActive", "0");
