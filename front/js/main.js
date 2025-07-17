@@ -131,15 +131,6 @@
         }).catch(console.warn);
     }
 
-    window.addEventListener('error', function (e) {
-        reportError(e.error || e);
-        return false;
-    });
-
-    window.addEventListener('unhandledrejection', function (e) {
-        reportError(e.reason || e);
-    });
-
     function initAddAllBtn() {
         const addAllBtn = document.querySelector('.predictBtn');
         addAllBtn.addEventListener('click', () => {
