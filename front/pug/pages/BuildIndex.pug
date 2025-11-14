@@ -1,6 +1,8 @@
 button.menu-btn menu
 .menu-test
     button.lng-btn en
+    button.auth-btn auth
+    button.bet-btn Bet
 .allwin__page#forecastPoster
     .welcome
         .welcome__container
@@ -34,7 +36,130 @@ button.menu-btn menu
                 .welcome__text(data-translate="welcomeTxt") &#8203;
                 a(href="/login/" role="button" data-translate="loginBtn" data-promo="forecast_poster_ua"
                     data-button="authBtn").welcome__btn.custom-btn.authBtn &#8203;
-        .welcome__row(id="draggableContainer")
+        .welcome__row#draggableContainer
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 14.11
+                    .welcome__item-max-title Люксембург – Німеччина
+                    .welcome__item-info
+                        .welcome__item-bid Німеччина з форою (-2.5)
+                        .welcome__item-cof 1.82
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 14.11
+                    .welcome__item-max-title Польща – Нідерланди
+                    .welcome__item-info
+                        .welcome__item-bid тотал менше (3.0)
+                        .welcome__item-cof 1.72
+
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 14.11
+                    .welcome__item-max-title Словаччина – Північна Ірландія
+                    .welcome__item-info
+                        .welcome__item-bid тотал менше (2.5)
+                        .welcome__item-cof 1.52
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 15.11
+                    .welcome__item-max-title Грузія – Іспанія
+                    .welcome__item-info
+                        .welcome__item-bid Іспанія з форою (-1.5)
+                        .welcome__item-cof 1.75
+
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 15.11
+                    .welcome__item-max-title Боснія і Герцеговина – Румунія
+                    .welcome__item-info
+                        .welcome__item-bid Румунія не програє
+                        .welcome__item-cof 1.54
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 15.11
+                    .welcome__item-max-title Швейцарія – Швеція
+                    .welcome__item-info
+                        .welcome__item-bid Обидві заб'ють
+                        .welcome__item-cof 1.76
+
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 15.11
+                    .welcome__item-max-title Греція – Шотландія
+                    .welcome__item-info
+                        .welcome__item-bid Шотландія не програє
+                        .welcome__item-cof 1.63
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 16.11
+                    .welcome__item-max-title Угорщина – Ірландія
+                    .welcome__item-info
+                        .welcome__item-bid тотал більше (2.0)
+                        .welcome__item-cof 1.63
+
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 16.11
+                    .welcome__item-max-title Україна – Ісландія
+                    .welcome__item-info
+                        .welcome__item-bid тотал більше (2.0)
+                        .welcome__item-cof 1.63
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 16.11
+                    .welcome__item-max-title Албанія – Англія
+                    .welcome__item-info
+                        .welcome__item-bid перемога Англії
+                        .welcome__item-cof 1.46
+
+            .welcome__row-wrap
+                .welcome__item
+                    .welcome__item-close
+                    .welcome__item-row
+                        .welcome__item-title
+                            span Світ. Чемпіонат світу 2026. Кваліфікація. Європа
+                        .welcome__item-date 16.11
+                    .welcome__item-max-title Італія – Норвегія
+                    .welcome__item-info
+                        .welcome__item-bid Обидві заб'ють
+                        .welcome__item-cof 1.76
+
+
         .welcome__btns.hide
             img(src='img/welcome/btns.svg' alt='buttons')
         .welcome__btn.custom-btn.predictBtn.hide(role ="button" data-translate="eventsBtn" data-promo="forecast_poster_ua"
@@ -43,7 +168,7 @@ button.menu-btn menu
             .welcome__switch-btn
             .welcome__switch-text(data-translate="eventsBtn") &#8203;
         .welcome__bet
-            .welcome__bet-txt #[span(data-translate="added") &#8203;] #[p #[span.counter &#8203;] #[span.events &#8203;]]
+            .welcome__bet-txt #[span(data-translate="added") &#8203;] #[p #[span.counter 0] #[span.events &#8203;]]
             a(href="/sports/sport/soccer/" role="button" data-translate="betBtn" data-promo="forecast_poster_ua"
                 data-button="placeBetBtn").welcome__bet-btn.custom-btn &#8203;
     .detail

@@ -18,8 +18,9 @@
     if (enLeng) locale = 'en';
 
     let i18nData = {};
-    let userId;
+    // let userId;
     // userId = 100300268;
+    let userId = sessionStorage.getItem("userId") ?? null
     let elementsByMatchiD = {};
     let allMatches = [];
     let favDataByMatch = {};
@@ -153,7 +154,7 @@
             allMatches = (matches || []).sort((a, b) => new Date(a.matchDate) - new Date(b.matchDate));
 
             getBetslipItems().then(betslipMatches => {
-                initMatches(allMatches, betslipMatches);
+                // initMatches(allMatches, betslipMatches);
                 initSlider();
             }).catch(err => console.error('Error getting betslip items:', err));
         });
@@ -284,7 +285,7 @@
     function getMatchData(match, serviceId = 0) {
         if (serviceId > 1) return;
 
-        return fetch('/service/lineout/frontend_api2/', {
+        return fetch('https://www.favbet.ua/service/lineout/frontend_api2/', {
             method: 'POST',
             body: JSON.stringify({
                 "jsonrpc": "2.0",
@@ -439,12 +440,12 @@
 
     document.addEventListener('click', e => {
         const target = e.target.closest('.welcome__item');
-        // if (target && !userId) {
-        //     window.location.href = '/login';
-        // }
-        if(target){
-            target.classList.toggle('_done');
+        if (target && !userId) {
+            window.location.href = '/login';
         }
+        // if(target){
+        //     target.classList.toggle('_done');
+        // }
         // console.log(e.target.closest('.welcome__close-'));
     });
 
@@ -470,4 +471,37 @@
     document.querySelector(".menu-btn")?.addEventListener("click", () => {
             document.querySelector(".menu-test")?.classList.toggle("hide");
         });
+
+    const authBtn = document.querySelector(".auth-btn")
+    const betBtn = document.querySelector(".bet-btn")
+
+    authBtn.addEventListener("click", () =>{
+        if(userId){
+            sessionStorage.removeItem("userId")
+        }else{
+            sessionStorage.setItem("userId", "100300268")
+        }
+        window.location.reload()
+    });
+
+    betBtn.addEventListener("click", () =>{
+        document.querySelector(".welcome__bet").classList.toggle("hide");
+    })
+
+    const container = document.getElementById('draggableContainer');
+
+    container.addEventListener('click', (e) => {
+        const close = e.target.closest('.welcome__item-close');
+        if (close) {
+            const item = close.closest('.welcome__item');
+            if (item && item.classList.contains('_done')) item.classList.remove('_done');
+            e.stopPropagation();
+            return;
+        }
+
+        const item = e.target.closest('.welcome__item');
+        if (item && !item.classList.contains('_done')) item.classList.add('_done');
+    });
+
+
 })();
