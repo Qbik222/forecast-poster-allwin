@@ -1,5 +1,5 @@
 (function () {
-    const apiURL = 'https://fav-prom.com/api_forecast_poster';
+    const apiURL = 'https://fav-prom.com/api_forecast_poster_allwin';
 
     const
         unauthMsgs = document.querySelectorAll('.authBtn'),
@@ -12,7 +12,8 @@
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
 
-    let locale = 'uk';
+    // let locale = 'uk';
+    let locale = sessionStorage.getItem("locale") || "uk"
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
 
@@ -103,7 +104,7 @@
 
                 reportError(err);
 
-                document.querySelector('.fav__page').style.display = 'none';
+                document.querySelector('.allwin__page').style.display = 'none';
                 if (window.location.href.startsWith("https://www.favbet.hr/")) {
                     window.location.href = '/promocije/promocija/stub/';
                 } else {
@@ -181,7 +182,6 @@
                 <div class="welcome__item-close"></div>
                 <div class="welcome__item-row">
                     <div class="welcome__item-title">
-                        <img src="https://fav-prom.com/html/forecast-poster/img/welcome/fav.svg" alt="FAVBET">
                         <span>${translateKey(match.title)}</span>
                     </div>
                     <div class="welcome__item-date">${formatDate(match.matchDate)}</div>
@@ -395,7 +395,7 @@
             unauthMsgs.forEach(el => el.classList.add('hide'));
             switchWrap.classList.remove("hide");
         } else {
-            switchWrap.classList.add("hide");
+            // switchWrap.classList.add("hide");
             unauthMsgs.forEach(el => el.classList.remove('hide'));
         }
     }
@@ -439,13 +439,35 @@
 
     document.addEventListener('click', e => {
         const target = e.target.closest('.welcome__item');
-        if (target && !userId) {
-            window.location.href = '/login';
+        // if (target && !userId) {
+        //     window.location.href = '/login';
+        // }
+        if(target){
+            target.classList.toggle('_done');
         }
+        // console.log(e.target.closest('.welcome__close-'));
     });
 
-    let mainPage = document.querySelector('.fav__page');
+
+    let mainPage = document.querySelector('.allwin__page');
     setTimeout(() => mainPage.classList.add('overflow'), 1000);
 
     loadTranslations().then(init);
+
+
+    //for test
+    const lngBtn = document.querySelector(".lng-btn")
+
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "en");
+        }
+        window.location.reload();
+    });
+
+    document.querySelector(".menu-btn")?.addEventListener("click", () => {
+            document.querySelector(".menu-test")?.classList.toggle("hide");
+        });
 })();

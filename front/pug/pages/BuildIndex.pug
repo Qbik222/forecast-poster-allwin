@@ -1,18 +1,42 @@
-.fav__page#forecastPoster
+button.menu-btn menu
+.menu-test
+    button.lng-btn en
+.allwin__page#forecastPoster
     .welcome
-        .welcome__bg
         .welcome__container
+            .welcome__left
+                .welcome__bg
+                .welcome__decor-wrap
+                    .welcome__decor._cup
+                        img(src="/img/welcome/cup.png" alt="Cup")
+                    .welcome__decor._helmet
+                        img(src="/img/welcome/helmet.png" alt="Helmet")
+                    .welcome__decor._glove
+                        img(src="/img/welcome/glove.png" alt="Glove")
+                    .welcome__decor._sneaker
+                        img(src="/img/welcome/sneaker.png" alt="Sneaker")
+                    .welcome__decor._ball-top
+                        img(src="/img/welcome/ball-top.png" alt="Ball top")
+                    .welcome__decor._ball-bottom
+                        img(src="/img/welcome/boll-bottom.png" alt="Ball bottom")
+                    .welcome__decor._ball-center
+                        img(src="/img/welcome/ball-center.png" alt="Ball center")
+                    .welcome__decor._ball-top-right
+                        img(src="/img/welcome/ball-top-right.png" alt="Ball top right")
+                    .welcome__decor._mini-ball-left
+                        img(src="/img/welcome/mini-ball-left.png" alt="Mini ball left")
+
             .welcome__wrap
                 .welcome__title
-                    img(src='https://fav-prom.com/html/forecast-poster/img/welcome/title.svg' alt='FAVBET')
+                    .welcome__title-text(data-translate="welcomeTitle")
                     .welcome__sub(data-translate="ps") &#8203;
                 .welcome__subtitle(data-translate="welcomeSub") &#8203;
                 .welcome__text(data-translate="welcomeTxt") &#8203;
+                a(href="/login/" role="button" data-translate="loginBtn" data-promo="forecast_poster_ua"
+                    data-button="authBtn").welcome__btn.custom-btn.authBtn &#8203;
         .welcome__row(id="draggableContainer")
         .welcome__btns.hide
-            img(src='https://fav-prom.com/html/forecast-poster/img/welcome/btns.svg' alt='buttons')
-        a(href="/login/" role="button" data-translate="loginBtn" data-promo="forecast_poster_ua"
-            data-button="authBtn").welcome__btn.custom-btn.authBtn &#8203;
+            img(src='img/welcome/btns.svg' alt='buttons')
         .welcome__btn.custom-btn.predictBtn.hide(role ="button" data-translate="eventsBtn" data-promo="forecast_poster_ua"
             data-button="addEventsBtn") &#8203;
         .welcome__switch
