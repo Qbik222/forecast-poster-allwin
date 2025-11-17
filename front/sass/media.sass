@@ -1,4 +1,8 @@
 @media screen and (max-width: 1250px)
+  .en
+    .welcome
+      &__sub
+        right: 90px
   .welcome
     &__wrap
       max-width: 335px
@@ -79,11 +83,10 @@
       min-width: 300px
       max-width: 300px
       height: 151px
+      &-close
+        right: 24%
       &::after
-        top: -15px
-        padding: 4.5px 16px
-        font-size: 27px
-        line-height: 21px
+        left: 46%
       &-title
         font-size: 15px
         line-height: 15px
@@ -113,7 +116,7 @@
     padding: 0
     &__wrap
       transform: scale(.6)
-      margin: 0 0 -20px
+      //margin: 0 0 -20px
     &__conteiner
       max-width: 550px
     &__bet
@@ -135,8 +138,21 @@
           content: none
 
 @media screen and (max-width: 500px)
+  .en
+    .welcome
+      &__sub
+        right: 85px
   .welcome
     padding: 20px 0 0
+    &__bet
+      padding: 20px 17px
+      &-txt
+        font-size: 16px
+        span
+          font-size: 16px
+        p
+          span
+            font-size: 18px
     &__left
       transform: translateX(-50%)
       min-width: 374px
@@ -202,6 +218,8 @@
       margin: -85px 0 0 0
     &__title
       //max-width: 180px
+      max-width: 310px
+      min-width: 310px
       margin: 0 0 10px
       &-text
         font-size: 68px
@@ -211,7 +229,7 @@
       line-height: 16px
       width: 60px
       height: 18px
-      right: 15px
+      right: -6px
       bottom: 5px
       transform: rotate(-9.172deg)
       //bottom: -6px
@@ -220,13 +238,14 @@
       font-size: 20px
       line-height: 25px
       margin: 0 0 7px
-      max-width: 300px
+      max-width: 95vw
     &__text
-      max-width: 100%
+      max-width: 95vw
       margin: 0 0 20px
       font-size: 14px
       line-height: 18px
     &__bet
+      padding: 20px 17px
       margin: 20px 20px 0
     &__item
       &-cof
@@ -245,16 +264,6 @@
       margin: 0 0 30px
   .authBtn
     margin-top: 20px
-
-@media screen and (max-width: 370px)
-  .welcome
-    &__bet
-      padding: 11px 8px
-      &-txt
-        font-size: 16px
-        p
-          span
-            font-size: 18px
 
 @media screen and (max-width: 330px)
   .welcome

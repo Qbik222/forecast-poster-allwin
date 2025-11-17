@@ -278,7 +278,8 @@
         const lastDigit = value % 10;
         let translationKey = (lastDigit === 1) ? 'event1' : (lastDigit >= 2 && lastDigit <= 4) ? 'event2' : 'event3';
 
-        eventsSpan.innerHTML = translateKey(translationKey);
+
+        eventsSpan.innerHTML = `${translateKey(translationKey)}`;
         welcomeBet.classList.toggle('hide', value <= 0);
     }
 
