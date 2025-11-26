@@ -106,7 +106,7 @@
                 reportError(err);
 
                 document.querySelector('.allwin__page').style.display = 'none';
-                if (window.location.href.startsWith("https://www.favbet.hr/")) {
+                if (window.location.href.startsWith("https://www.allwin.hr/")) {
                     window.location.href = '/promocije/promocija/stub/';
                 } else {
                     window.location.href = '/promos/promo/stub/';
@@ -288,7 +288,7 @@
     function getMatchData(match, serviceId = 0) {
         if (serviceId > 1) return;
 
-        return fetch('https://www.favbet.ua/service/lineout/frontend_api2/', {
+        return fetch('https://www.allwin.ua/service/lineout/frontend_api2/', {
             method: 'POST',
             body: JSON.stringify({
                 "jsonrpc": "2.0",
