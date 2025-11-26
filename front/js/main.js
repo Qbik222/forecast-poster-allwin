@@ -179,6 +179,8 @@
                     matchDiv.classList.add('_done');
                 }
 
+                // console.log(match)
+
                 matchDiv.innerHTML = `
                 <div class="welcome__item-close"></div>
                 <div class="welcome__item-row">
